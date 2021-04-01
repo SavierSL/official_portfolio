@@ -16,7 +16,7 @@
   }
   @include respond(phone) {
     // width < 1200?
-    font-size: 200.25%; //1 rem = 9px, 9/16 = 50%
+    font-size: 20.25%; //1 rem = 9px, 9/16 = 50%
   }
   scroll-behavior: smooth;
 }

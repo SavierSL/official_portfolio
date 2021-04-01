@@ -41,7 +41,12 @@
   }
 }
 .fullStack {
-  margin-left: 1rem;
+  @include respond(phone) {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-left: 1rem;
+  }
   span {
     font-weight: 700;
     letter-spacing: 1rem;
@@ -51,15 +56,32 @@
     &:not(:last-child) {
       margin-right: 1.8rem;
     }
+    @include respond(phone) {
+      text-align: center;
+      margin-left: 0;
+      font-size: 0.8rem;
+      &:not(:last-child) {
+        margin-right: 0;
+      }
+    }
   }
 }
 .scrollDown {
   margin-top: 8rem;
+  @include respond(phone) {
+    margin-top: 4rem;
+  }
   &_first {
     margin-right: 1rem;
+    @include respond(phone) {
+      margin-right: 0rem;
+    }
   }
   span {
     letter-spacing: 1rem;
+    @include respond(phone) {
+      letter-spacing: 0.5rem;
+    }
     display: inline-block;
     position: relative;
     color: violet;
