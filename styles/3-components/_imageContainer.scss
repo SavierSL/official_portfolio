@@ -1,0 +1,24 @@
+.image_container {
+  width: 440px;
+  height: 300px;
+  position: relative;
+  overflow: hidden;
+  visibility: hidden;
+  &_imageReveal {
+    overflow: hidden;
+    content: "";
+    width: 500px;
+    height: 100%;
+    background: #000;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateX(0);
+    border-right: solid 2px black;
+  }
+  img {
+    width: 430px;
+    left: 0;
+    position: absolute;
+  }
+}
