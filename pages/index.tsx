@@ -18,6 +18,7 @@ import {
   scrollAnimation,
   transition,
 } from "../components/animation";
+import About from "../components/about";
 
 const Index: React.FC<IndexProps> = (props) => {
   const size = useWindowSize();
@@ -39,9 +40,7 @@ const Index: React.FC<IndexProps> = (props) => {
     document.body.style.height = `${
       scrollContainer.current.getBoundingClientRect().height
     }px`;
-    setTimeout(() => {
-      setAnimate(true);
-    }, 1000);
+
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [size.height]);
@@ -49,10 +48,6 @@ const Index: React.FC<IndexProps> = (props) => {
   useEffect(() => {
     requestAnimationFrame(() => skewScrolling());
   }, []);
-
-  if (animate) {
-    animation.start("animate");
-  }
 
   // Scrolling
   const skewScrolling = () => {
@@ -93,12 +88,13 @@ const Index: React.FC<IndexProps> = (props) => {
         <div ref={scrollContainer} className="scrollContainer">
           <MainContainer {...props}>
             <Intro />
+            <About />
           </MainContainer>
         </div>
       </div>
-      <motion.div initial="initial" animate={animation}>
+      <motion.div initial="initial" animate="animate">
         <motion.div
-          style={{ marginTop: `${offsetY / 7.5 + 67.2}px` }}
+          style={{ marginTop: `${offsetY / 1.5 + 67.2}px` }}
           variants={ballAnimatin}
           className={styles.ball}
         ></motion.div>
@@ -106,7 +102,7 @@ const Index: React.FC<IndexProps> = (props) => {
 
       <motion.div
         initial="initial"
-        animate={animation}
+        animate="animate"
         className={styles.lineContainer}
       >
         <motion.div

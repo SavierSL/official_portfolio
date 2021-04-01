@@ -13,7 +13,7 @@ import {
   letter,
   letterScroll,
   scrollDown,
-} from "../components/animation";
+} from "./animation";
 export interface IntroProps {}
 
 const Intro: React.SFC<IntroProps> = () => {
@@ -25,23 +25,17 @@ const Intro: React.SFC<IntroProps> = () => {
   useEffect(() => {
     //access the body height and assign the height of scroll container
 
-    setTimeout(() => {
-      setAnimate(true);
-    }, 1000);
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [animate]);
 
-  if (animate) {
-    animation.start("animate");
-  }
   return (
     <>
-      <div style={{ minHeight: "700vh" }}>
+      <div style={{ minHeight: "100vh" }}>
         <div style={{ paddingTop: "2rem" }}>
           <motion.div
             initial="initial"
-            animate={animation}
+            animate="animate"
             style={{
               textAlign: "center",
               marginRight: "auto",
@@ -120,7 +114,7 @@ const Intro: React.SFC<IntroProps> = () => {
               className={styles.primaryHeading}
               style={{
                 color: "#92278F",
-                marginLeft: `-${offsetY * 0.1}px`,
+                marginLeft: `-${offsetY * 0.15}px`,
               }}
             >
               X
@@ -142,7 +136,7 @@ const Intro: React.SFC<IntroProps> = () => {
           </motion.div>
           <motion.div
             initial="initial"
-            animate={animation}
+            animate="animate"
             className={styles.scrollDown}
           >
             <motion.span

@@ -34,7 +34,7 @@ export const scrollDown = {
 };
 
 export const letter = {
-  initial: {
+    initial: {
     y: -40,
     opacity: 0,
   },

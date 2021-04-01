@@ -18,7 +18,9 @@
     "next-env.d.ts",
     "**/*.ts",
     "**/*.tsx",
-    "src/components/animtion.js"
+    "components/animtion.js",
+    "components/about.jsx",
+    "delarations.d.ts"
   ],
   "exclude": ["node_modules"]
 }
