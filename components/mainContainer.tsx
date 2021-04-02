@@ -11,7 +11,11 @@ const MainContainer: React.FC = (props: any) => {
     <>
       <div
         className={styles.html}
-        style={{ color: props.theme.fontColor, background: props.theme.bg }}
+        style={{
+          color: props.theme.fontColor,
+          background: props.theme.bg,
+          overflow: "hidden",
+        }}
       >
         {props.children}
       </div>

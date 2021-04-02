@@ -62,7 +62,7 @@ const Index: React.FC<IndexProps> = (props) => {
     const difference = data.current - data.rounded;
     const acceleration = difference / size.width;
     const velocity = +acceleration;
-    const skew = velocity * 7.5;
+    const skew = velocity * 6.5;
 
     //Assign skew and smooth scrolling to the scroll container
     scrollContainer.current.style.transform = `translate3d(0, -${data.rounded}px, 0) skewY(${skew}deg)`;
@@ -92,24 +92,30 @@ const Index: React.FC<IndexProps> = (props) => {
           </MainContainer>
         </div>
       </div>
-      <motion.div initial="initial" animate="animate">
-        <motion.div
-          style={{ marginTop: `${offsetY / 1.5 + 67.2}px` }}
-          variants={ballAnimatin}
-          className={styles.ball}
-        ></motion.div>
-      </motion.div>
-
-      <motion.div
-        initial="initial"
-        animate="animate"
-        className={styles.lineContainer}
+      <div
+        style={{
+          overflow: "hidden",
+        }}
       >
+        <motion.div initial="initial" animate="animate">
+          <motion.div
+            style={{ marginTop: `${offsetY / 1.5 + 67.2}px` }}
+            variants={ballAnimatin}
+            className={styles.ball}
+          ></motion.div>
+        </motion.div>
+
         <motion.div
-          variants={scrollAnimation}
-          className={styles.lineContainer_line}
-        ></motion.div>
-      </motion.div>
+          initial="initial"
+          animate="animate"
+          className={styles.lineContainer}
+        >
+          <motion.div
+            variants={scrollAnimation}
+            className={styles.lineContainer_line}
+          ></motion.div>
+        </motion.div>
+      </div>
     </>
   );
 };

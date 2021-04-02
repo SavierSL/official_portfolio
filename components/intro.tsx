@@ -31,7 +31,7 @@ const Intro: React.SFC<IntroProps> = () => {
 
   return (
     <>
-      <div style={{ minHeight: "100vh" }}>
+      <div style={{ minHeight: "100vh", overflow: "hidden" }}>
         <div style={{ paddingTop: "2rem" }}>
           <motion.div
             initial="initial"

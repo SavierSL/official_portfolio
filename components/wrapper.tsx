@@ -8,6 +8,7 @@ const Wrapper: React.FC<WrapperProps> = ({ children }) => {
           margin: "auto",
           width: "80%",
           paddingTop: "5rem",
+          overflow: "hidden",
         }}
       >
         {children}
