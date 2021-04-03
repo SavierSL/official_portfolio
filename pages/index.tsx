@@ -19,6 +19,8 @@ import {
   transition,
 } from "../components/animation";
 import About from "../components/about";
+import GraphicArtist from "../components/graphicArtist";
+import WebDev from "../components/webDev";
 
 const Index: React.FC<IndexProps> = (props) => {
   const size = useWindowSize();
@@ -89,6 +91,7 @@ const Index: React.FC<IndexProps> = (props) => {
           <MainContainer {...props}>
             <Intro />
             <About />
+            <WebDev />
           </MainContainer>
         </div>
       </div>

@@ -46,38 +46,37 @@
 }
 .image_container2 {
   cursor: pointer;
-  width: 300px;
-  height: 720px;
+  width: 900px;
+  height: 300px;
   position: relative;
   overflow: hidden;
   display: flex;
-  background: rgb(255, 122, 122);
-  border: solid 1px black;
+  background: rgb(15, 0, 14);
 
   &_imageReveal2 {
     overflow: hidden;
     width: 10rem;
-    height: 720px;
-    background: #000;
+    height: 100%;
+    background: black;
     position: absolute;
-    top: -2px;
+
     left: 0;
   }
 
   &_imgW2 {
     cursor: pointer;
     z-index: 99;
-    width: 1650px;
-    height: 920px;
+    width: 1150px;
+    height: 620px;
     margin-top: 3rem;
     position: absolute;
-    right: -23rem;
+    right: -13rem;
     @include respond(phone) {
       width: 1150px;
       height: 620px;
       right: 0;
       left: -25rem;
-      margin-top: 15rem;
+      margin-top: 2rem;
     }
   }
   &_imgC2 {
