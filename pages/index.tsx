@@ -91,6 +91,7 @@ const Index: React.FC<IndexProps> = (props) => {
           <MainContainer {...props}>
             <Intro />
             <About />
+
             <WebDev />
           </MainContainer>
         </div>

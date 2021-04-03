@@ -26,6 +26,8 @@ const About: React.FC<AboutProps> = () => {
   const myTitleRef = useRef(null);
   const akaliCImage = useRef(null);
   const sentence1 = useRef(null);
+  const sentence2 = useRef(null);
+  const sentence3 = useRef(null);
   let imageContainer: any = useRef(null);
   let image: any = useRef(null);
   let imageReveal: any = useRef(null);
@@ -74,8 +76,8 @@ const About: React.FC<AboutProps> = () => {
       ease: "Power4.out",
     });
   };
-  const fadeIn2 = (element: string) => {
-    gsap.to(element, {
+  const fadeIn2 = (element1: string, element2: string, element3: string) => {
+    gsap.to(element1, {
       delay: 0.9,
       duration: 1,
       opacity: 1,
@@ -85,10 +87,41 @@ const About: React.FC<AboutProps> = () => {
         amount: 0.3,
       },
     });
+    gsap.to(element2, {
+      delay: 1,
+      duration: 1,
+      opacity: 1,
+      x: 0,
+      ease: "Power4.out",
+      stagger: {
+        amount: 0.3,
+      },
+    });
+    gsap.to(element3, {
+      delay: 1.1,
+      duration: 1,
+      opacity: 1,
+      x: 0,
+      ease: "Power4.out",
+      stagger: {
+        amount: 0.3,
+      },
+    });
   };
-  const fadeOut2 = (element: string) => {
-    gsap.to(element, {
-      delay: 0.9,
+  const fadeOut2 = (element1: string, element2: string, element3: string) => {
+    gsap.to(element1, {
+      duration: 1,
+      opacity: 0,
+      x: -50,
+      ease: "Power4.out",
+    });
+    gsap.to(element2, {
+      duration: 1,
+      opacity: 0,
+      x: -50,
+      ease: "Power4.out",
+    });
+    gsap.to(element3, {
       duration: 1,
       opacity: 0,
       x: -50,
@@ -182,8 +215,8 @@ const About: React.FC<AboutProps> = () => {
   };
   useEffect(() => {
     interSectionImageReveal && interSectionImageReveal?.intersectionRatio < 0.2 //not reached
-      ? fadeOut2(sentence1.current)
-      : fadeIn2(sentence1.current);
+      ? fadeOut2(sentence1.current, sentence2.current, sentence3.current)
+      : fadeIn2(sentence1.current, sentence2.current, sentence3.current);
   }, [interSection, interSectionImageReveal]);
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
@@ -267,7 +300,26 @@ const About: React.FC<AboutProps> = () => {
                       marginTop: "5erm",
                     }}
                   >
-                    I graduated as a Bachelor of Science in Entertainment and
+                    I graduated as a Bachelor
+                  </h1>
+                  <h1
+                    ref={sentence2}
+                    style={{
+                      fontSize: "1.5rem",
+                      opacity: "0",
+                      marginTop: "5erm",
+                    }}
+                  >
+                    Science in Entertainment and
+                  </h1>
+                  <h1
+                    ref={sentence3}
+                    style={{
+                      fontSize: "1.5rem",
+                      opacity: "0",
+                      marginTop: "5erm",
+                    }}
+                  >
                     Multimedia Comh1uting
                   </h1>
                 </div>
