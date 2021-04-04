@@ -63,6 +63,7 @@
   &_grad {
     width: 30%;
     margin-left: 1rem;
+    transition: all 0.5s ease;
     @include respond(phone) {
       width: 100%;
       margin-left: 0;

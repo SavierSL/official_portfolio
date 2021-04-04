@@ -19,6 +19,7 @@ export interface AboutProps {}
 const About: React.FC<AboutProps> = () => {
   const [zoomOut, setZoomOut] = useState(false);
   const [zoomOut2, setZoomOut2] = useState(false);
+  const [fadeIn2State, setFadeIn2State] = useState(false);
   const tl = new TimelineLite();
   const nameRef = useRef(null);
   const imageRevealFirstRef = useRef(null);
@@ -77,8 +78,11 @@ const About: React.FC<AboutProps> = () => {
     });
   };
   const fadeIn2 = (element1: string, element2: string, element3: string) => {
+    if (!fadeIn2State) {
+      return;
+    }
     gsap.to(element1, {
-      delay: 0.9,
+      delay: 0.4,
       duration: 1,
       opacity: 1,
       x: 0,
@@ -88,7 +92,7 @@ const About: React.FC<AboutProps> = () => {
       },
     });
     gsap.to(element2, {
-      delay: 1,
+      delay: 0.5,
       duration: 1,
       opacity: 1,
       x: 0,
@@ -98,7 +102,7 @@ const About: React.FC<AboutProps> = () => {
       },
     });
     gsap.to(element3, {
-      delay: 1.1,
+      delay: 0.6,
       duration: 1,
       opacity: 1,
       x: 0,
@@ -109,6 +113,7 @@ const About: React.FC<AboutProps> = () => {
     });
   };
   const fadeOut2 = (element1: string, element2: string, element3: string) => {
+    setFadeIn2State(true);
     gsap.to(element1, {
       duration: 1,
       opacity: 0,
@@ -131,7 +136,7 @@ const About: React.FC<AboutProps> = () => {
   const firstImageReveal = (el1: any, el2: any, el3: any, el4: any) => {
     gsap.to(el3, { opacity: 1, scale: 1.3, delay: 0.2, duration: 1.1 });
 
-    tl.to(el2, 1.1, {
+    tl.to(el2, 0.5, {
       width: "0%",
       ease: Power2.easeInOut,
     }); //.to(el3, 1.4, {
@@ -160,10 +165,13 @@ const About: React.FC<AboutProps> = () => {
     setZoomOut(false);
   };
   const firstImageReveal2 = (el1: any, el2: any, el3: any) => {
-    tl.to(el2, 1.05, {
+    if (!zoomOut2) {
+      return;
+    }
+    tl.to(el2, 1, {
       width: "0%",
       ease: Power2.easeInOut,
-      delay: -1.6,
+      delay: -0.4,
     }); //.to(el3, 1.4, {
     //   opacity: 1,
     //   scale: 1.3,
@@ -176,15 +184,12 @@ const About: React.FC<AboutProps> = () => {
       delay: 0.2,
       duration: 0.5,
     });
-    setZoomOut2(true);
   };
   const secondImageReveal2 = (el1: any, el2: any, el3: any) => {
-    if (!zoomOut2) {
-      return;
-    }
+    setZoomOut2(true);
     gsap.to(el3, { opacity: 0, scale: 1, delay: 0.2, duration: 0.5 });
     tl.to(el2, 1.1, {
-      delay: -1.6,
+      delay: -0.4,
       width: "100%",
       ease: Power2.easeInOut,
     }); //.to(el3, 1.1, {
@@ -193,7 +198,6 @@ const About: React.FC<AboutProps> = () => {
     //   ease: Power2.easeOut,
     //   delay: -1.6,
     // }); //to is to go to 1.6 scale //from is to go to normal from 1.6 scale
-    setZoomOut2(false);
   };
   //FOR THE AKALI IMAGE COLORED
   const onHoverCimage = () => {
@@ -244,7 +248,7 @@ const About: React.FC<AboutProps> = () => {
           <div className={styles.myName}>
             <h1>I AM XAVIER SAN LORENZO</h1>
           </div>
-          <div style={{ marginTop: "1.5rem" }}>
+          <div>
             <div ref={nameRef} className={styles.nameRef}>
               "
             </div>
@@ -285,13 +289,19 @@ const About: React.FC<AboutProps> = () => {
                 <div
                   ref={(el) => (imageContainer = el)}
                   className={styles.image_container}
+                  style={{
+                    transform: `translateX(${offsetY * 0.08 - 20}px)`,
+                  }}
                 >
                   <div
                     ref={(el) => (imageReveal = el)}
                     className={styles.image_container_imageReveal}
                   ></div>
                 </div>
-                <div className={styles.imageAndGradContainer_grad}>
+                <div
+                  className={styles.imageAndGradContainer_grad}
+                  style={{ transform: `translateX(-${offsetY * 0.09}px)` }}
+                >
                   <h1
                     ref={sentence1}
                     style={{

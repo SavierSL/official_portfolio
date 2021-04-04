@@ -1,12 +1,13 @@
 .image_container {
   cursor: pointer;
   width: 550px;
-  height: 320px;
+  height: 300px;
   position: relative;
   overflow: hidden;
   display: flex;
-  background: rgb(15, 0, 14);
+  background: rgb(46, 2, 43);
   border: solid 1px black;
+  transition: all 0.5s ease;
 
   &_imageReveal {
     overflow: hidden;
@@ -51,7 +52,8 @@
   position: relative;
   overflow: hidden;
   display: flex;
-  background: rgb(15, 0, 14);
+  background: rgb(46, 2, 43);
+  transition: all 0.5s ease;
 
   &_imageReveal2 {
     overflow: hidden;
