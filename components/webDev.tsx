@@ -7,9 +7,8 @@ const WebDev: React.SFC<WebDevProps> = () => (
   <>
     <div
       style={{
-        height: "100vh",
         overflow: "hidden",
-        background: "#000",
+        height: "100vh",
       }}
     >
       <Wrapper>

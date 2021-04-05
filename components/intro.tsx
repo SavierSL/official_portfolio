@@ -31,7 +31,7 @@ const Intro: React.SFC<IntroProps> = () => {
 
   return (
     <>
-      <div style={{ height: "780px", overflow: "hidden" }}>
+      <div style={{ height: "100vh", overflow: "hidden" }}>
         <div style={{ paddingTop: "2rem" }}>
           <motion.div
             initial="initial"
@@ -88,6 +88,7 @@ const Intro: React.SFC<IntroProps> = () => {
                 marginRight: "-8.2rem",
                 zIndex: 2,
                 transform: `translateX(${offsetY * 0.1}px)`,
+                transition: `all 0.5s ease`,
               }}
             >
               X
@@ -115,6 +116,7 @@ const Intro: React.SFC<IntroProps> = () => {
               style={{
                 color: "#92278F",
                 marginLeft: `-${offsetY * 0.15}px`,
+                transition: `all 0.5s ease`,
               }}
             >
               X

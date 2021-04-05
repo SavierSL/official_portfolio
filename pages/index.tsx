@@ -40,7 +40,7 @@ const Index: React.FC<IndexProps> = (props) => {
   useEffect(() => {
     //access the body height and assign the height of scroll container
     document.body.style.height = `${
-      scrollContainer.current.getBoundingClientRect().height * 4
+      scrollContainer.current.getBoundingClientRect().height * 2.15 //adjust here to fix scroling height
     }px`;
 
     window.addEventListener("scroll", handleScroll);
@@ -77,10 +77,51 @@ const Index: React.FC<IndexProps> = (props) => {
 
   return (
     <>
+      <motion.div initial="initial" animate="animate">
+        <motion.div
+          style={{
+            marginTop: `${offsetY / 18 + 67.2}px`,
+            transition: `all 0.5s ease`,
+          }}
+          variants={ballAnimatin}
+          className={styles.ball}
+        ></motion.div>
+      </motion.div>
+
+      <motion.div
+        initial="initial"
+        animate="animate"
+        className={styles.lineContainer}
+      >
+        <motion.div
+          variants={scrollAnimation}
+          className={styles.lineContainer_line}
+        ></motion.div>
+      </motion.div>
+
+      <img
+        src="/wires.png"
+        alt="aha"
+        style={{
+          overflow: "hidden",
+          position: "fixed",
+          zIndex: 1,
+          opacity: "30%",
+          width: "60vw",
+          marginTop: `${-offsetY / 450}rem`,
+          left: 0,
+          right: 0,
+          transition: "all 1s ease",
+          marginLeft: "auto",
+          marginRight: "auto",
+        }}
+      />
+
       <div
         ref={app}
         className="app"
         style={{
+          zIndex: 2,
           overflow: "hidden",
           position: "fixed",
           top: 0,
@@ -89,7 +130,11 @@ const Index: React.FC<IndexProps> = (props) => {
           width: "100%",
         }}
       >
-        <div ref={scrollContainer} className="scrollContainer">
+        <div
+          ref={scrollContainer}
+          className="scrollContainer"
+          style={{ zIndex: 2 }}
+        >
           <MainContainer {...props}>
             <Intro />
             <About />
@@ -97,30 +142,6 @@ const Index: React.FC<IndexProps> = (props) => {
             <WebDev />
           </MainContainer>
         </div>
-      </div>
-      <div
-        style={{
-          overflow: "hidden",
-        }}
-      >
-        <motion.div initial="initial" animate="animate">
-          <motion.div
-            style={{ marginTop: `${offsetY / 1.5 + 67.2}px` }}
-            variants={ballAnimatin}
-            className={styles.ball}
-          ></motion.div>
-        </motion.div>
-
-        <motion.div
-          initial="initial"
-          animate="animate"
-          className={styles.lineContainer}
-        >
-          <motion.div
-            variants={scrollAnimation}
-            className={styles.lineContainer_line}
-          ></motion.div>
-        </motion.div>
       </div>
     </>
   );

@@ -291,8 +291,10 @@ const About: React.FC<AboutProps> = () => {
                   className={styles.image_container}
                   style={{
                     transform: `translateX(${offsetY * 0.08 - 20}px)`,
+                    backgroundImage: "/dots.png",
                   }}
                 >
+                  <img src="/dots.png" alt="" style={{ opacity: "70%" }} />
                   <div
                     ref={(el) => (imageReveal = el)}
                     className={styles.image_container_imageReveal}
@@ -300,7 +302,7 @@ const About: React.FC<AboutProps> = () => {
                 </div>
                 <div
                   className={styles.imageAndGradContainer_grad}
-                  style={{ transform: `translateX(-${offsetY * 0.09}px)` }}
+                  style={{ transform: `translateX(-${offsetY * 0.05}px)` }}
                 >
                   <h1
                     ref={sentence1}
@@ -353,8 +355,9 @@ const About: React.FC<AboutProps> = () => {
                 <div
                   ref={(el) => (imageContainer2 = el)}
                   className={styles.image_container2}
-                  style={{ transform: `translateY(${offsetY * 0.1}px)` }}
+                  style={{ transform: `translateY(${offsetY * 0.05}px)` }}
                 >
+                  <img src="/dots.png" alt="" style={{ opacity: "70%" }} />
                   <div
                     ref={(el) => (imageReveal2 = el)}
                     className={styles.image_container2_imageReveal2}
