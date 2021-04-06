@@ -3,7 +3,7 @@ import Wrapper from "./wrapper";
 import alpha from "../components/images/alpha.png";
 import styled from "styled-components";
 import Image from "next/image";
-import { gsap } from "gsap";
+import gsap from "gsap";
 import styles from "../styles/main.module.scss";
 import { CSSRulePlugin } from "gsap/CSSRulePlugin";
 gsap.registerPlugin(CSSRulePlugin);
@@ -13,6 +13,7 @@ gsap.registerPlugin(CSSRulePlugin);
 import { start } from "node:repl";
 import { useIntersection } from "react-use";
 import { TimelineLite, Power2 } from "gsap";
+import useWindowDimensions from "./getWindow";
 
 export interface AboutProps {}
 
@@ -20,6 +21,7 @@ const About: React.FC<AboutProps> = () => {
   const [zoomOut, setZoomOut] = useState(false);
   const [zoomOut2, setZoomOut2] = useState(false);
   const [fadeIn2State, setFadeIn2State] = useState(false);
+  const [fadeIn22State, setFadeIn22State] = useState(false);
   const tl = new TimelineLite();
   const nameRef = useRef(null);
   const imageRevealFirstRef = useRef(null);
@@ -29,6 +31,9 @@ const About: React.FC<AboutProps> = () => {
   const sentence1 = useRef(null);
   const sentence2 = useRef(null);
   const sentence3 = useRef(null);
+  const sentence21 = useRef(null);
+  const sentence22 = useRef(null);
+  const sentence23 = useRef(null);
   let imageContainer: any = useRef(null);
   let image: any = useRef(null);
   let imageReveal: any = useRef(null);
@@ -133,6 +138,62 @@ const About: React.FC<AboutProps> = () => {
       ease: "Power4.out",
     });
   };
+  const fadeIn3 = (element1: string, element2: string, element3: string) => {
+    if (!fadeIn22State) {
+      return;
+    }
+    gsap.to(element1, {
+      delay: 0.4,
+      duration: 1,
+      opacity: 1,
+      x: 0,
+      ease: "Power4.out",
+      stagger: {
+        amount: 0.3,
+      },
+    });
+    gsap.to(element2, {
+      delay: 0.5,
+      duration: 1,
+      opacity: 1,
+      x: 0,
+      ease: "Power4.out",
+      stagger: {
+        amount: 0.3,
+      },
+    });
+    gsap.to(element3, {
+      delay: 0.6,
+      duration: 1,
+      opacity: 1,
+      x: 0,
+      ease: "Power4.out",
+      stagger: {
+        amount: 0.3,
+      },
+    });
+  };
+  const fadeOut3 = (element1: string, element2: string, element3: string) => {
+    setFadeIn22State(true);
+    gsap.to(element1, {
+      duration: 1,
+      opacity: 0,
+      x: -50,
+      ease: "Power4.out",
+    });
+    gsap.to(element2, {
+      duration: 1,
+      opacity: 0,
+      x: -50,
+      ease: "Power4.out",
+    });
+    gsap.to(element3, {
+      duration: 1,
+      opacity: 0,
+      x: -50,
+      ease: "Power4.out",
+    });
+  };
   const firstImageReveal = (el1: any, el2: any, el3: any, el4: any) => {
     gsap.to(el3, { opacity: 1, scale: 1.3, delay: 0.2, duration: 1.1 });
 
@@ -168,6 +229,7 @@ const About: React.FC<AboutProps> = () => {
     if (!zoomOut2) {
       return;
     }
+    fadeIn3(sentence21.current, sentence22.current, sentence23.current);
     tl.to(el2, 1, {
       width: "0%",
       ease: Power2.easeInOut,
@@ -187,6 +249,7 @@ const About: React.FC<AboutProps> = () => {
   };
   const secondImageReveal2 = (el1: any, el2: any, el3: any) => {
     setZoomOut2(true);
+    fadeOut3(sentence21.current, sentence22.current, sentence23.current);
     gsap.to(el3, { opacity: 0, scale: 1, delay: 0.2, duration: 0.5 });
     tl.to(el2, 1.1, {
       delay: -0.4,
@@ -243,7 +306,14 @@ const About: React.FC<AboutProps> = () => {
   return (
     <>
       {/* we will adjust the height base on the responsiveness 1980 if cp and 1280px if web*/}
-      <div style={{ height: "1280px", overflow: "hidden" }}>
+      <div
+        style={{
+          height: "100%",
+          overflow: "hidden",
+
+          paddingBottom: "12rem",
+        }}
+      >
         <Wrapper>
           <div className={styles.myName}>
             <h1>I AM XAVIER SAN LORENZO</h1>
@@ -290,7 +360,7 @@ const About: React.FC<AboutProps> = () => {
                   ref={(el) => (imageContainer = el)}
                   className={styles.image_container}
                   style={{
-                    transform: `translateX(${offsetY * 0.08 - 20}px)`,
+                    transform: `translateX(${offsetY * 0.02 - 20}px)`,
                     backgroundImage: "/dots.png",
                   }}
                 >
@@ -302,14 +372,19 @@ const About: React.FC<AboutProps> = () => {
                 </div>
                 <div
                   className={styles.imageAndGradContainer_grad}
-                  style={{ transform: `translateX(-${offsetY * 0.05}px)` }}
+                  style={{
+                    transform: `${
+                      useWindowDimensions().width < 700
+                        ? ""
+                        : `translateX(-${offsetY * 0.05}px`
+                    }`,
+                  }}
                 >
                   <h1
                     ref={sentence1}
                     style={{
                       fontSize: "1.5rem",
                       opacity: "0",
-                      marginTop: "5erm",
                     }}
                   >
                     I graduated as a Bachelor
@@ -319,7 +394,6 @@ const About: React.FC<AboutProps> = () => {
                     style={{
                       fontSize: "1.5rem",
                       opacity: "0",
-                      marginTop: "5erm",
                     }}
                   >
                     Science in Entertainment and
@@ -329,10 +403,9 @@ const About: React.FC<AboutProps> = () => {
                     style={{
                       fontSize: "1.5rem",
                       opacity: "0",
-                      marginTop: "5erm",
                     }}
                   >
-                    Multimedia Comh1uting
+                    Multimedia Computing
                   </h1>
                 </div>
               </div>
@@ -345,11 +418,31 @@ const About: React.FC<AboutProps> = () => {
                 >
                   "
                 </div>
-                <div className={styles.imageAndGradContainer2_grad}>
-                  <h1 className={styles.threeDModeler}>
-                    I am 3D modeler and a graphic artist, but recently I focused
-                    in learning web development in the year of 2020.
-                  </h1>
+                <div
+                  className={styles.imageAndGradContainer2_grad}
+                  style={{ zIndex: 5000 }}
+                >
+                  <div
+                    className={styles.sentence2}
+                    style={{
+                      marginTop:
+                        useWindowDimensions().width < 700 ? "" : "6rem",
+                      transform: `${
+                        useWindowDimensions().width < 700
+                          ? ""
+                          : `translateX(${offsetY * 0.05}px`
+                      }`,
+                      transition: "all 1s ease",
+                    }}
+                  >
+                    <h1 ref={sentence21}>
+                      I am 3D modeler and a graphic artist,
+                    </h1>
+                    <h1 ref={sentence22}>but recently I focused in learning</h1>
+                    <h1 ref={sentence23}>
+                      web development in the year of 2020.
+                    </h1>
+                  </div>
                 </div>
 
                 <div
@@ -371,6 +464,16 @@ const About: React.FC<AboutProps> = () => {
                   alt="Picture of the author"
                 />
               </div>
+              <img
+                style={{
+                  height: "35rem",
+                  marginTop: "-5rem",
+                  marginLeft: "-5rem",
+                  position: "absolute",
+                }}
+                src="/career.png"
+                alt="Picture of the author"
+              />
             </div>
           </div>
         </Wrapper>

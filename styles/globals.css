@@ -10,6 +10,6 @@
   background: transparent; /* Optional: just make scrollbar invisible */
 }
 :root {
-  background: black;
+  background: #0f0f0f;
 }
 /* Optional: show position indicator in red */

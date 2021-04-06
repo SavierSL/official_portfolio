@@ -21,6 +21,8 @@ import {
 import About from "../components/about";
 import GraphicArtist from "../components/graphicArtist";
 import WebDev from "../components/webDev";
+import gsap from "gsap";
+import useWindowDimensions from "../components/getWindow";
 
 const Index: React.FC<IndexProps> = (props) => {
   const size = useWindowSize();
@@ -28,6 +30,7 @@ const Index: React.FC<IndexProps> = (props) => {
   const scrollContainer = useRef<any>();
   const [animate, setAnimate] = useState(false);
   const [offsetY, setOffsetY] = useState(0);
+  const mainBg = useRef();
   const handleScroll = () => setOffsetY(window.pageYOffset);
   const data = {
     ease: 0.1,
@@ -40,14 +43,21 @@ const Index: React.FC<IndexProps> = (props) => {
   useEffect(() => {
     //access the body height and assign the height of scroll container
     document.body.style.height = `${
-      scrollContainer.current.getBoundingClientRect().height * 2.15 //adjust here to fix scroling height
+      scrollContainer.current.getBoundingClientRect().height * 3.15 //adjust here to fix scroling height
     }px`;
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, [size.height]);
-
+  console.log(useWindowDimensions());
   useEffect(() => {
+    gsap.to(mainBg.current, {
+      opacity: "30%",
+
+      duration: 0.5,
+      delay: 3.6,
+      scale: 1,
+    });
     requestAnimationFrame(() => skewScrolling());
   }, []);
 
@@ -100,15 +110,17 @@ const Index: React.FC<IndexProps> = (props) => {
       </motion.div>
 
       <img
+        ref={mainBg}
         src="/wires.png"
         alt="aha"
         style={{
+          top: "-30rem",
           overflow: "hidden",
           position: "fixed",
           zIndex: 1,
-          opacity: "30%",
+          opacity: "0%",
           width: "60vw",
-          marginTop: `${-offsetY / 450}rem`,
+          marginTop: `${offsetY / 450}rem`,
           left: 0,
           right: 0,
           transition: "all 1s ease",

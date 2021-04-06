@@ -6,7 +6,6 @@
   overflow: hidden;
   display: flex;
 
-  border: solid 1px black;
   transition: all 0.5s ease;
 
   &_imageReveal {
@@ -14,7 +13,7 @@
     width: 550px;
     height: 500px;
     opacity: 70%;
-    background: black;
+    background: #0f0f0f;
     position: absolute;
     top: -2px;
     right: 0;
@@ -29,7 +28,9 @@
     position: absolute;
 
     @include respond(phone) {
-      left: -20%;
+      left: -10%;
+      width: 450px;
+      height: 280px;
     }
   }
   &_imgC {
@@ -61,7 +62,7 @@
     overflow: hidden;
     width: 10rem;
     height: 100%;
-    background: black;
+    background: #0f0f0f;
     position: absolute;
 
     left: 0;
@@ -76,26 +77,12 @@
     position: absolute;
     right: -13rem;
     @include respond(phone) {
-      width: 1150px;
-      height: 620px;
+      width: 820px;
+      height: 500px;
       right: 0;
-      left: -25rem;
-      margin-top: 2rem;
-    }
-  }
-  &_imgC2 {
-    transform: scale(0.5);
-    cursor: pointer;
-    z-index: 100;
-    width: 1650px;
-    height: 920px;
-    margin-top: 8rem;
-    position: absolute;
-    opacity: 1;
-    right: -10rem;
+      margin-top: 15rem;
 
-    @include respond(phone) {
-      left: -20%;
+      right: -60%;
     }
   }
 }

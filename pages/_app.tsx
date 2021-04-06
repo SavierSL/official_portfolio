@@ -30,10 +30,10 @@ const MyApp = ({ Component, pageProps }) => {
         ></link>
       </Head>
 
-      <div style={{ position: "absolute", right: "0" }}>
+      {/* <div style={{ position: "absolute", right: "0" }}>
         <button onClick={darkMode.enable}>DARK MODE</button>
         <button onClick={darkMode.disable}>LIGHT MODE</button>
-      </div>
+      </div> */}
 
       {isMounted && <Component {...pageProps} theme={theme} />}
     </ThemeProvider>

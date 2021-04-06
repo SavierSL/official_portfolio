@@ -1,13 +1,15 @@
-export interface WrapperProps {}
+export interface WrapperProps {
+  padding?: boolean;
+}
 
-const Wrapper: React.FC<WrapperProps> = ({ children }) => {
+const Wrapper: React.FC<WrapperProps> = ({ children, padding = true }) => {
   return (
     <>
       <div
         style={{
           margin: "auto",
           width: "80%",
-          paddingTop: "5rem",
+          paddingTop: `${padding ? "5rem" : "0rem"}`,
           overflow: "hidden",
         }}
       >
