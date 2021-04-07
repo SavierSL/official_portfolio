@@ -23,6 +23,11 @@ import GraphicArtist from "../components/graphicArtist";
 import WebDev from "../components/webDev";
 import gsap from "gsap";
 import useWindowDimensions from "../components/getWindow";
+import CustomCursor from "../components/cursor";
+import {
+  GlobalProvider,
+  useGlobalDispatchContext,
+} from "../components/Context/globalContext";
 
 const Index: React.FC<IndexProps> = (props) => {
   const size = useWindowSize();
@@ -39,6 +44,7 @@ const Index: React.FC<IndexProps> = (props) => {
     rounded: 0,
   };
   const animation = useAnimation();
+  const dispatch = useGlobalDispatchContext();
 
   useEffect(() => {
     //access the body height and assign the height of scroll container
@@ -85,8 +91,17 @@ const Index: React.FC<IndexProps> = (props) => {
     requestAnimationFrame(() => skewScrolling());
   };
 
+  const onCursor = (style: string) => {
+    if (style === "hovered") {
+      dispatch({ type: "HOVERED", cursorStyle: "hovered" });
+    } else {
+      dispatch({ type: "POINTER", cursorStyle: "pointer" });
+    }
+  };
+
   return (
     <>
+      <CustomCursor />
       <motion.div initial="initial" animate="animate">
         <motion.div
           style={{
@@ -149,11 +164,10 @@ const Index: React.FC<IndexProps> = (props) => {
         >
           <MainContainer {...props}>
             <Intro />
-            <About />
-
+            <About onCursor={onCursor} />
             <WebDev />
           </MainContainer>
-        </div>
+        </div>{" "}
       </div>
     </>
   );

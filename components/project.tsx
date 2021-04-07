@@ -13,6 +13,7 @@ const Project: React.SFC<ProjectProps> = () => {
           description=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil enim
           quaerat expedita. Earum, error officiis?"
         />
+        <ProjectComponent title="" imageName="" description="" />
       </div>
     </>
   );

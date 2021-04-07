@@ -14,10 +14,18 @@ import { start } from "node:repl";
 import { useIntersection } from "react-use";
 import { TimelineLite, Power2 } from "gsap";
 import useWindowDimensions from "./getWindow";
+import {
+  hoveredCursor,
+  pointerCursor,
+} from "../components/redux/actions/cursor";
+import { useDispatch } from "react-redux";
 
-export interface AboutProps {}
+export interface AboutProps {
+  onCursor: (style: string) => void;
+}
 
-const About: React.FC<AboutProps> = () => {
+const About: React.FC<AboutProps> = ({ onCursor }) => {
+  const dispatch = useDispatch();
   const [zoomOut, setZoomOut] = useState(false);
   const [zoomOut2, setZoomOut2] = useState(false);
   const [fadeIn2State, setFadeIn2State] = useState(false);
@@ -264,6 +272,7 @@ const About: React.FC<AboutProps> = () => {
   };
   //FOR THE AKALI IMAGE COLORED
   const onHoverCimage = () => {
+    dispatch(hoveredCursor());
     gsap.to(akaliCImage.current, {
       duration: 0.3,
       opacity: 1,
@@ -273,6 +282,7 @@ const About: React.FC<AboutProps> = () => {
     });
   };
   const onHoverOutCimage = () => {
+    dispatch(pointerCursor());
     gsap.to(akaliCImage.current, {
       opacity: 0,
       scale: 1.1,
@@ -344,8 +354,12 @@ const About: React.FC<AboutProps> = () => {
               <div className={styles.imageAndGradContainer}>
                 <img
                   className={styles.image_container_imgC}
-                  onMouseEnter={() => onHoverCimage()}
-                  onMouseLeave={() => onHoverOutCimage()}
+                  onMouseEnter={() => {
+                    onHoverCimage();
+                  }}
+                  onMouseLeave={() => {
+                    onHoverOutCimage();
+                  }}
                   ref={akaliCImage}
                   src="/cRagdoll.png"
                   alt="Picture of the author"
