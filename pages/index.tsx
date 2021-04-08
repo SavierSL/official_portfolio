@@ -101,7 +101,7 @@ const Index: React.FC<IndexProps> = (props) => {
 
   return (
     <>
-      <CustomCursor />
+      <CustomCursor data={data} />
       <motion.div initial="initial" animate="animate">
         <motion.div
           style={{
