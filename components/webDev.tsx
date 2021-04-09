@@ -88,6 +88,7 @@ const WebDev: React.SFC<WebDevProps> = () => {
         style={{
           overflow: "hidden",
           height: "500vh",
+          marginTop: "4rem",
         }}
       >
         <Wrapper padding={true}>

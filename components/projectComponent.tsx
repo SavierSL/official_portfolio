@@ -2,18 +2,23 @@ import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { hoveredCursor, pointerCursor } from "./redux/actions/cursor";
 import NextLink from "next/link";
+import { useRouter } from "next/router";
 import gsap from "gsap";
+import { onTransition } from "./redux/actions/transtition";
 export interface ProjectComponentProps {
   title: string;
   description: string;
   imageName: string;
+  link: string;
 }
 
 const ProjectComponent: React.SFC<ProjectComponentProps> = ({
   title,
   description,
   imageName,
+  link,
 }) => {
+  const router = useRouter();
   const clickDetailsRef = useRef();
   const dispatch = useDispatch();
   const titleRef = useRef();
@@ -49,6 +54,7 @@ const ProjectComponent: React.SFC<ProjectComponentProps> = ({
           textAlign: "left",
           background: "#151515",
           padding: "1rem",
+          width: "100%",
         }}
       >
         <div
@@ -66,12 +72,13 @@ const ProjectComponent: React.SFC<ProjectComponentProps> = ({
           style={{
             height: "25rem",
             overflow: "hidden",
-
+            width: "100%",
             position: "relative",
           }}
         >
           <div
             style={{
+              background: "red",
               height: "5rem",
               width: "100%",
               position: "absolute",
@@ -88,28 +95,34 @@ const ProjectComponent: React.SFC<ProjectComponentProps> = ({
               CLICK FOR MORE DETAILS
             </h1>
           </div>
-          <NextLink href="/blogit">
-            <img
-              onMouseEnter={() => {
-                dispatch(hoveredCursor());
-                onHoverDetails();
-              }}
-              onMouseLeave={() => {
-                dispatch(pointerCursor());
-                onLeaveHoverDetails();
-              }}
-              ref={imageProjectRef}
-              src={`/${imageName}.png`}
-              alt=""
-              style={{
-                width: "100%",
-                position: "absolute",
-                top: 0,
-                left: 0,
-                overflow: "hidden",
-              }}
-            />
-          </NextLink>
+
+          <img
+            onMouseEnter={() => {
+              dispatch(hoveredCursor());
+              onHoverDetails();
+            }}
+            onMouseLeave={() => {
+              dispatch(pointerCursor());
+              onLeaveHoverDetails();
+            }}
+            onClick={() => {
+              dispatch(pointerCursor());
+              dispatch(onTransition());
+              setTimeout(() => {
+                return router.push("/blogit");
+              }, 1000);
+            }}
+            ref={imageProjectRef}
+            src={`/${imageName}.png`}
+            alt=""
+            style={{
+              width: "100%",
+              position: "absolute",
+              top: 0,
+              left: 0,
+              overflow: "hidden",
+            }}
+          />
         </div>
 
         <p ref={descriptionRef} style={{ fontSize: "1.5rem" }}>

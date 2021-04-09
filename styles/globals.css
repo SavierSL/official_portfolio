@@ -12,5 +12,6 @@
 :root {
   background: #0f0f0f;
   cursor: none;
+  overflow-x: hidden;
 }
 /* Optional: show position indicator in red */

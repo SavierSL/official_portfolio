@@ -15,6 +15,7 @@ const Project: React.SFC<ProjectProps> = () => {
       >
         <div style={{ marginTop: "4rem" }}>
           <ProjectComponent
+            link="blogit"
             title="BLOG IT"
             imageName="blogit"
             description=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil enim
@@ -23,6 +24,7 @@ const Project: React.SFC<ProjectProps> = () => {
         </div>
         <div style={{ marginTop: "4rem" }}>
           <ProjectComponent
+            link="qshare"
             title="Q ShareiT"
             imageName="qshare2"
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil enim
@@ -31,6 +33,7 @@ const Project: React.SFC<ProjectProps> = () => {
         </div>
         <div style={{ marginTop: "4rem" }}>
           <ProjectComponent
+            link="qshare"
             title="Taku"
             imageName="taku2"
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil enim
@@ -39,6 +42,7 @@ const Project: React.SFC<ProjectProps> = () => {
         </div>
         <div style={{ marginTop: "4rem" }}>
           <ProjectComponent
+            link="qshare"
             title="Dev"
             imageName="dev"
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil enim

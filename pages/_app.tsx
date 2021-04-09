@@ -4,9 +4,10 @@ import { ThemeProvider } from "styled-components";
 import { lightTheme, darkTheme } from "../theme";
 import "../styles/globals.css";
 import Head from "next/head";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 import store from "../components/redux/store";
 import ReactScrollWheelHandler from "react-scroll-wheel-handler";
+import { AnimatePresence } from "framer-motion";
 
 const MyApp = ({ Component, pageProps }) => {
   const [isMounted, setIsMounted] = useState(false);
@@ -37,8 +38,9 @@ const MyApp = ({ Component, pageProps }) => {
         <button onClick={darkMode.enable}>DARK MODE</button>
         <button onClick={darkMode.disable}>LIGHT MODE</button>
       </div> */}
-
-        {isMounted && <Component {...pageProps} theme={theme} />}
+        <AnimatePresence exitBeforeEnter>
+          {isMounted && <Component {...pageProps} theme={theme} />}
+        </AnimatePresence>
       </Provider>
     </ThemeProvider>
   );

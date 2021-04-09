@@ -1,6 +1,7 @@
 import MainContainer from "../components/mainContainer";
 import styles from "../styles/main.module.scss";
 import {
+  AnimatePresence,
   motion,
   useAnimation,
   useTransform,
@@ -28,6 +29,9 @@ import {
   GlobalProvider,
   useGlobalDispatchContext,
 } from "../components/Context/globalContext";
+import { useDispatch, useSelector } from "react-redux";
+import { isResSent } from "next/dist/next-server/lib/utils";
+import { offTransition } from "../components/redux/actions/transtition";
 
 const Index: React.FC<IndexProps> = (props) => {
   const size = useWindowSize();
@@ -44,7 +48,8 @@ const Index: React.FC<IndexProps> = (props) => {
     rounded: 0,
   };
   const animation = useAnimation();
-  const dispatch = useGlobalDispatchContext();
+  const dispatch = useDispatch();
+  const [showIndex, setShowIndex] = useState(true);
 
   useEffect(() => {
     //access the body height and assign the height of scroll container
@@ -57,6 +62,11 @@ const Index: React.FC<IndexProps> = (props) => {
   }, [size.height]);
   console.log(useWindowDimensions());
   useEffect(() => {
+    dispatch(offTransition());
+    setTimeout(() => {
+      setShowIndex(false);
+    }, 3000);
+
     gsap.to(mainBg.current, {
       opacity: "30%",
 
@@ -83,92 +93,97 @@ const Index: React.FC<IndexProps> = (props) => {
     const skew = velocity * 1.5;
 
     //Assign skew and smooth scrolling to the scroll container
-    scrollContainer.current.style.transform = `translate3d(0, -${
-      data.rounded * 0.4
-    }px, 0) skewY(${skew}deg)`;
+    if (scrollContainer.current?.style) {
+      scrollContainer.current.style.transform = `translate3d(0, -${
+        data.rounded * 0.4
+      }px, 0) skewY(${skew}deg)`;
+    }
 
     //loop vai raf
     requestAnimationFrame(() => skewScrolling());
   };
 
-  const onCursor = (style: string) => {
-    if (style === "hovered") {
-      dispatch({ type: "HOVERED", cursorStyle: "hovered" });
-    } else {
-      dispatch({ type: "POINTER", cursorStyle: "pointer" });
-    }
-  };
+  // const onCursor = (style: string) => {
+  //   if (style === "hovered") {
+  //     dispatch({ type: "HOVERED", cursorStyle: "hovered" });
+  //   } else {
+  //     dispatch({ type: "POINTER", cursorStyle: "pointer" });
+  //   }
+  // };
 
   return (
     <>
-      <CustomCursor data={data} />
-      <motion.div initial="initial" animate="animate">
-        <motion.div
-          style={{
-            marginTop: `${offsetY / 18 + 67.2}px`,
-            transition: `all 0.5s ease`,
-          }}
-          variants={ballAnimatin}
-          className={styles.ball}
-        ></motion.div>
-      </motion.div>
+      {" "}
+      <MainContainer {...props}>
+        <motion.div exit={{ opacity: 0 }}>
+          <CustomCursor data={data} />
+          <motion.div initial="initial" animate="animate">
+            <motion.div
+              style={{
+                marginTop: `${offsetY / 18 + 67.2}px`,
+                transition: `all 0.5s ease`,
+              }}
+              variants={ballAnimatin}
+              className={styles.ball}
+            ></motion.div>
+          </motion.div>
 
-      <motion.div
-        initial="initial"
-        animate="animate"
-        className={styles.lineContainer}
-      >
-        <motion.div
-          variants={scrollAnimation}
-          className={styles.lineContainer_line}
-        ></motion.div>
-      </motion.div>
+          <motion.div
+            initial="initial"
+            animate="animate"
+            className={styles.lineContainer}
+          >
+            <motion.div
+              variants={scrollAnimation}
+              className={styles.lineContainer_line}
+            ></motion.div>
+          </motion.div>
 
-      <img
-        ref={mainBg}
-        src="/wires.png"
-        alt="aha"
-        style={{
-          top: "-30rem",
-          overflow: "hidden",
-          position: "fixed",
-          zIndex: 1,
-          opacity: "0%",
-          width: "60vw",
-          marginTop: `${offsetY / 450}rem`,
-          left: 0,
-          right: 0,
-          transition: "all 1s ease",
-          marginLeft: "auto",
-          marginRight: "auto",
-        }}
-      />
+          <img
+            ref={mainBg}
+            src="/wires.png"
+            alt="aha"
+            style={{
+              top: "-30rem",
+              overflow: "hidden",
+              position: "fixed",
+              zIndex: 1,
+              opacity: "0%",
+              width: "60vw",
+              marginTop: `${offsetY / 450}rem`,
+              left: 0,
+              right: 0,
+              transition: "all 1s ease",
+              marginLeft: "auto",
+              marginRight: "auto",
+            }}
+          />
 
-      <div
-        ref={app}
-        className="app"
-        style={{
-          zIndex: 2,
-          overflow: "hidden",
-          position: "fixed",
-          top: 0,
-          left: 0,
-          height: "100%",
-          width: "100%",
-        }}
-      >
-        <div
-          ref={scrollContainer}
-          className="scrollContainer"
-          style={{ zIndex: 2 }}
-        >
-          <MainContainer {...props}>
-            <Intro />
-            <About onCursor={onCursor} />
-            <WebDev />
-          </MainContainer>
-        </div>{" "}
-      </div>
+          <div
+            ref={app}
+            className="app"
+            style={{
+              zIndex: 2,
+              overflow: "hidden",
+              position: "fixed",
+              top: 0,
+              left: 0,
+              height: "100%",
+              width: "100%",
+            }}
+          >
+            <div
+              ref={scrollContainer}
+              className="scrollContainer"
+              style={{ zIndex: 2 }}
+            >
+              <Intro />
+              <About />
+              <WebDev />
+            </div>{" "}
+          </div>
+        </motion.div>
+      </MainContainer>
     </>
   );
 };

@@ -18,20 +18,22 @@
   }
 }
 .ball {
+  z-index: 5001;
   background: violet;
   width: 1rem;
   height: 1rem;
   position: fixed;
   border-radius: 100%;
-  margin-left: 1.6rem;
+  margin-left: 1.2rem;
   margin-top: 4.2rem;
 }
 .lineContainer {
   height: 80vh;
   position: fixed;
   overflow: hidden;
-  margin-left: 2rem;
+  margin-left: 1.6rem;
   margin-top: 4.5rem;
+  z-index: 5001;
 
   &_line {
     height: 80vh;

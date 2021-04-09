@@ -15,6 +15,25 @@ function* watchPointerCursor() {
   yield takeEvery(type.CURSOR_POINTER_SAGA, pointerCursor);
 }
 
+function* onTransitionSaga(action: any) {
+  yield put({ type: type.ON_TRANSITION });
+}
+function* watchOnTransitionSaga() {
+  yield takeEvery(type.ON_TRANSITION_SAGA, onTransitionSaga);
+}
+
+function* offTransitionSaga(action: any) {
+  yield put({ type: type.OFF_TRANSITION });
+}
+function* watchOffTransitionSaga() {
+  yield takeEvery(type.OFF_TRANSITION_SAGA, offTransitionSaga);
+}
+
 export default function* rootSaga() {
-  yield all([watchHoverCursor(), watchPointerCursor()]);
+  yield all([
+    watchHoverCursor(),
+    watchPointerCursor(),
+    watchOnTransitionSaga(),
+    watchOffTransitionSaga(),
+  ]);
 }

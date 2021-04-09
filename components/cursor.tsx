@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Cursor } from "../style-components/cursor";
 import { useGlobalStateContext } from "../components/Context/globalContext";
 import { useSelector } from "react-redux";
 import { cursorStateTypes } from "./redux/reducers/cursor";
+import gsap from "gsap";
 interface CustomCursorProps {
   data: {
     ease: number;
@@ -18,8 +19,9 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ data }) => {
     y: 400,
   });
   const [offsetY, setOffsetY] = useState(0);
+
   const handleScroll = () => setOffsetY(window.pageYOffset);
-  console.log(cursorStyle);
+
   const onMouseMove = (event: any) => {
     const { pageX: x, pageY: y } = event;
     setMousePoisition({ x, y });
@@ -32,9 +34,10 @@ const CustomCursor: React.FC<CustomCursorProps> = ({ data }) => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, []);
-  console.log(offsetY);
+
   return (
     <>
+      {" "}
       <Cursor
         className={cursorStyle === "pointer" ? "pointer" : "hovered"}
         style={{

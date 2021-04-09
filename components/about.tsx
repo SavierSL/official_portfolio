@@ -20,11 +20,7 @@ import {
 } from "../components/redux/actions/cursor";
 import { useDispatch } from "react-redux";
 
-export interface AboutProps {
-  onCursor: (style: string) => void;
-}
-
-const About: React.FC<AboutProps> = ({ onCursor }) => {
+const About: React.FC<{}> = () => {
   const dispatch = useDispatch();
   const [zoomOut, setZoomOut] = useState(false);
   const [zoomOut2, setZoomOut2] = useState(false);
@@ -355,7 +351,7 @@ const About: React.FC<AboutProps> = ({ onCursor }) => {
                 <img
                   className={styles.image_container_imgC}
                   onMouseEnter={() => {
-                 onHoverCimage;
+                    onHoverCimage();
                   }}
                   onMouseLeave={() => {
                     onHoverOutCimage();

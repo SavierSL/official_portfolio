@@ -12,7 +12,7 @@ interface Action {
 
 const cursor = (state = initialStateCursor, action: Action) => {
   const { type, payload } = action;
-  console.log(payload);
+
   switch (type) {
     case types.CURSOR_HOVERED: {
       return { ...state, cursorStyle: payload };
