@@ -22,8 +22,8 @@ export const Cursor = styled.div`
   }
   &.hovered {
     background: violet !important;
-    width: 1rem;
-    height: 1rem;
+    width: 5rem;
+    height: 5rem;
     mix-blend-mode: difference;
   }
   &.nav-open {

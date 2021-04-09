@@ -6,14 +6,37 @@ export interface ProjectProps {}
 const Project: React.SFC<ProjectProps> = () => {
   return (
     <>
-      <div>
-        <ProjectComponent
-          title="BLOG IT"
-          imageName="blogit"
-          description=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil enim
+      <div
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          flexDirection: "column",
+        }}
+      >
+        <div style={{ marginTop: "4rem" }}>
+          <ProjectComponent
+            title="BLOG IT"
+            imageName="blogit"
+            description=" Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil enim
           quaerat expedita. Earum, error officiis?"
-        />
-        <ProjectComponent title="" imageName="" description="" />
+          />
+        </div>
+        <div style={{ marginTop: "4rem" }}>
+          <ProjectComponent
+            title="Q ShareiT"
+            imageName="qshare"
+            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil enim
+          quaerat expedita. Earum, error officiis?"
+          />
+        </div>
+        <div style={{ marginTop: "4rem" }}>
+          <ProjectComponent
+            title="Taku"
+            imageName="taku2"
+            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil enim
+          quaerat expedita. Earum, error officiis?"
+          />
+        </div>
       </div>
     </>
   );
