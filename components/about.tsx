@@ -355,7 +355,7 @@ const About: React.FC<AboutProps> = ({ onCursor }) => {
                 <img
                   className={styles.image_container_imgC}
                   onMouseEnter={() => {
-                    onHoverCimage();
+                 onHoverCimage;
                   }}
                   onMouseLeave={() => {
                     onHoverOutCimage();

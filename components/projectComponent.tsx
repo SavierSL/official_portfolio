@@ -1,6 +1,7 @@
 import { useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import { hoveredCursor, pointerCursor } from "./redux/actions/cursor";
+import NextLink from "next/link";
 import gsap from "gsap";
 export interface ProjectComponentProps {
   title: string;
@@ -42,7 +43,14 @@ const ProjectComponent: React.SFC<ProjectComponentProps> = ({
   }, []);
   return (
     <>
-      <div style={{ marginTop: "1rem", textAlign: "left" }}>
+      <div
+        style={{
+          marginTop: "1rem",
+          textAlign: "left",
+          background: "#151515",
+          padding: "1rem",
+        }}
+      >
         <div
           style={{
             position: "absolute",
@@ -51,10 +59,12 @@ const ProjectComponent: React.SFC<ProjectComponentProps> = ({
             height: "30rem",
           }}
         ></div>
-        <h1 ref={titleRef}>{title}</h1>
+        <h1 ref={titleRef} style={{ marginBottom: "1rem" }}>
+          {title}
+        </h1>
         <div
           style={{
-            height: "38rem",
+            height: "25rem",
             overflow: "hidden",
 
             position: "relative",
@@ -78,26 +88,28 @@ const ProjectComponent: React.SFC<ProjectComponentProps> = ({
               CLICK FOR MORE DETAILS
             </h1>
           </div>
-          <img
-            onMouseEnter={() => {
-              dispatch(hoveredCursor());
-              onHoverDetails();
-            }}
-            onMouseLeave={() => {
-              dispatch(pointerCursor());
-              onLeaveHoverDetails();
-            }}
-            ref={imageProjectRef}
-            src={`/${imageName}.png`}
-            alt=""
-            style={{
-              width: "100%",
-              position: "absolute",
-              top: 0,
-              left: 0,
-              overflow: "hidden",
-            }}
-          />
+          <NextLink href="/blogit">
+            <img
+              onMouseEnter={() => {
+                dispatch(hoveredCursor());
+                onHoverDetails();
+              }}
+              onMouseLeave={() => {
+                dispatch(pointerCursor());
+                onLeaveHoverDetails();
+              }}
+              ref={imageProjectRef}
+              src={`/${imageName}.png`}
+              alt=""
+              style={{
+                width: "100%",
+                position: "absolute",
+                top: 0,
+                left: 0,
+                overflow: "hidden",
+              }}
+            />
+          </NextLink>
         </div>
 
         <p ref={descriptionRef} style={{ fontSize: "1.5rem" }}>

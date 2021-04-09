@@ -24,7 +24,7 @@ const Project: React.SFC<ProjectProps> = () => {
         <div style={{ marginTop: "4rem" }}>
           <ProjectComponent
             title="Q ShareiT"
-            imageName="qshare"
+            imageName="qshare2"
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil enim
           quaerat expedita. Earum, error officiis?"
           />
@@ -33,6 +33,14 @@ const Project: React.SFC<ProjectProps> = () => {
           <ProjectComponent
             title="Taku"
             imageName="taku2"
+            description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil enim
+          quaerat expedita. Earum, error officiis?"
+          />
+        </div>
+        <div style={{ marginTop: "4rem" }}>
+          <ProjectComponent
+            title="Dev"
+            imageName="dev"
             description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Nihil enim
           quaerat expedita. Earum, error officiis?"
           />
