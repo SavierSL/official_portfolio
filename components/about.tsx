@@ -448,10 +448,8 @@ const About: React.FC<{}> = () => {
                     <h1 ref={sentence21}>
                       I am 3D modeler and a graphic artist,
                     </h1>
-                    <h1 ref={sentence22}>but recently I focused in learning</h1>
-                    <h1 ref={sentence23}>
-                      web development in the year of 2020.
-                    </h1>
+                    <h1 ref={sentence22}>but recently I focused </h1>
+                    <h1 ref={sentence23}>web development.</h1>
                   </div>
                 </div>
 
