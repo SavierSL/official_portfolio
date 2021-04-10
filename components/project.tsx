@@ -13,7 +13,7 @@ const Project: React.SFC<ProjectProps> = () => {
           flexDirection: "column",
         }}
       >
-        <div style={{ marginTop: "4rem" }}>
+        <div style={{ marginBottom: "1rem" }}>
           <ProjectComponent
             link="blogit"
             title="BLOG IT"
@@ -22,7 +22,7 @@ const Project: React.SFC<ProjectProps> = () => {
           quaerat expedita. Earum, error officiis?"
           />
         </div>
-        <div style={{ marginTop: "4rem" }}>
+        <div style={{ marginTop: "1rem" }}>
           <ProjectComponent
             link="qshare"
             title="Q ShareiT"
@@ -31,7 +31,7 @@ const Project: React.SFC<ProjectProps> = () => {
           quaerat expedita. Earum, error officiis?"
           />
         </div>
-        <div style={{ marginTop: "4rem" }}>
+        <div style={{ marginTop: "1rem" }}>
           <ProjectComponent
             link="qshare"
             title="Taku"
@@ -40,7 +40,7 @@ const Project: React.SFC<ProjectProps> = () => {
           quaerat expedita. Earum, error officiis?"
           />
         </div>
-        <div style={{ marginTop: "4rem" }}>
+        <div style={{ marginTop: "1rem" }}>
           <ProjectComponent
             link="qshare"
             title="Dev"

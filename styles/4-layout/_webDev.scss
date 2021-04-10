@@ -1,0 +1,66 @@
+.projectContainer {
+  text-align: left;
+  background: #151515;
+  width: 100%;
+  padding: 1rem;
+  opacity: 0;
+
+  &_projectRevealRef {
+    position: absolute;
+
+    width: 1rem;
+    height: 30rem;
+  }
+  &_websiteContainer {
+    height: 25rem;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    @include respond(phone) {
+      height: 10rem;
+    }
+    &_image {
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      overflow: hidden;
+    }
+    &_details {
+      height: 5rem;
+      width: 100%;
+      position: absolute;
+      z-index: 3001;
+      bottom: 0;
+      text-align: "center";
+      transform: translateY(3rem);
+      &_click {
+        opacity: 0;
+        transform: translateY(3rem);
+      }
+    }
+  }
+}
+
+.webDevContainer {
+  overflow: hidden;
+  height: 500vh;
+  margin-top: 4rem;
+  &_webDevRef {
+    overflow: hidden;
+    height: 800px;
+    width: 30px;
+    position: absolute;
+    margin-top: 2rem;
+  }
+  &_titleLetter {
+    color: violet;
+    opacity: 0;
+    font-size: 6rem;
+    font-family: "Train One";
+    font-weight: 100;
+    @include respond(phone) {
+      font-size: 1.5rem;
+    }
+  }
+}

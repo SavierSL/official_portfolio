@@ -3,6 +3,7 @@ import { useIntersection } from "react-use";
 import Wrapper from "./wrapper";
 import gsap from "gsap";
 import Project from "./project";
+import styles from "../styles/main.module.scss";
 
 export interface WebDevProps {}
 interface data {
@@ -84,35 +85,20 @@ const WebDev: React.SFC<WebDevProps> = () => {
 
   return (
     <>
-      <div
-        style={{
-          overflow: "hidden",
-          height: "500vh",
-          marginTop: "4rem",
-        }}
-      >
+      <div className={styles.webDevContainer}>
         <Wrapper padding={true}>
           <div
+            className={styles.webDevContainer_webDevRef}
             ref={webDevRef}
-            style={{
-              overflow: "hidden",
-              height: "800px",
-              width: "30px",
-              position: "absolute",
-              marginTop: "2rem",
-            }}
           ></div>
           <div style={{ display: "flex" }}>
             {" "}
             {letterData.map((letter) => {
               return (
                 <h1
+                  className={styles.webDevContainer_titleLetter}
                   ref={letter.ref}
                   style={{
-                    opacity: "0",
-                    fontSize: "6rem",
-                    fontFamily: "Train One",
-                    fontWeight: 100,
                     marginLeft: `${
                       letter.letter === "D" || letter.letter === "P"
                         ? "1rem"

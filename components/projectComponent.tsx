@@ -5,6 +5,8 @@ import NextLink from "next/link";
 import { useRouter } from "next/router";
 import gsap from "gsap";
 import { onTransition } from "./redux/actions/transtition";
+import { useIntersection } from "react-use";
+import styles from "../styles/main.module.scss";
 export interface ProjectComponentProps {
   title: string;
   description: string;
@@ -24,7 +26,25 @@ const ProjectComponent: React.SFC<ProjectComponentProps> = ({
   const titleRef = useRef();
   const imageProjectRef = useRef();
   const descriptionRef = useRef();
-
+  const projectRevealRef = useRef();
+  const projectRef = useRef();
+  const interSection = useIntersection(projectRevealRef, {
+    root: null,
+    rootMargin: "0px",
+    threshold: 0.5,
+    //make sure to adjust the height of div that you ref to it to adjust it
+  });
+  const projectFadeIn = (e: any) => {
+    gsap.to(e.current, { opacity: 1 });
+  };
+  const projectFadeOut = (e: any) => {
+    gsap.to(e.current, { opacity: 0 });
+  };
+  useEffect(() => {
+    interSection && interSection?.intersectionRatio < 0.5
+      ? projectFadeOut(projectRef)
+      : projectFadeIn(projectRef);
+  }, [interSection]);
   const onHoverDetails = () => {
     gsap.to(clickDetailsRef.current, {
       opacity: 1,
@@ -48,55 +68,32 @@ const ProjectComponent: React.SFC<ProjectComponentProps> = ({
   }, []);
   return (
     <>
-      <div
-        style={{
-          marginTop: "1rem",
-          textAlign: "left",
-          background: "#151515",
-          padding: "1rem",
-          width: "100%",
-        }}
-      >
+      <div className={styles.projectContainer} ref={projectRef}>
         <div
-          style={{
-            position: "absolute",
-
-            width: "1rem",
-            height: "30rem",
-          }}
+          className={styles.projectContainer_projectRevealRef}
+          ref={projectRevealRef}
         ></div>
         <h1 ref={titleRef} style={{ marginBottom: "1rem" }}>
           {title}
         </h1>
-        <div
-          style={{
-            height: "25rem",
-            overflow: "hidden",
-            width: "100%",
-            position: "relative",
-          }}
-        >
-          <div
-            style={{
-              background: "red",
-              height: "5rem",
-              width: "100%",
-              position: "absolute",
-              zIndex: 3001,
-              bottom: 0,
-              textAlign: "center",
-              transform: `translateY(3rem)`,
-            }}
-          >
+        <div className={styles.projectContainer_websiteContainer}>
+          <div className={styles.projectContainer_websiteContainer_details}>
             <h1
+              className={styles.projectContainer_websiteContainer_detail_click}
               ref={clickDetailsRef}
-              style={{ opacity: 0, transform: `translateY(3rem)` }}
+              style={{
+                opacity: 0,
+                transform: `translateY(3rem)`,
+                background: "darkviolet",
+                padding: "1rem",
+              }}
             >
               CLICK FOR MORE DETAILS
             </h1>
           </div>
 
           <img
+            className={styles.projectContainer_websiteContainer_image}
             onMouseEnter={() => {
               dispatch(hoveredCursor());
               onHoverDetails();
@@ -115,13 +112,6 @@ const ProjectComponent: React.SFC<ProjectComponentProps> = ({
             ref={imageProjectRef}
             src={`/${imageName}.png`}
             alt=""
-            style={{
-              width: "100%",
-              position: "absolute",
-              top: 0,
-              left: 0,
-              overflow: "hidden",
-            }}
           />
         </div>
 
